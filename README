@@ -1,0 +1,21 @@
+ngx_stream_upstream_conn_pool_module
+
+Syntex:	 conn_pool   number;
+Default: conn_pool   0;
+Context: stream, upstream
+
+The parameter sets the number of connections to upstream servers in each worker process.
+Reduce RTT (TCP three-way handshake).
+
+
+e.g.
+stream {
+    upstream u {
+        conn_pool 10;
+        server example.com:80;
+    }
+
+    server {
+         proxy_pass u；
+    }
+}
